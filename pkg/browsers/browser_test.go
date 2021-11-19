@@ -1,16 +1,17 @@
 package browsers
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os/user"
 	"path"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
-	fullPath           = "~/Library/Application Support/Google/Chrome"
-	defaultProfileName = "Default"
+	fullPath                 = "~/Library/Application Support/Google/Chrome"
+	defaultProfileFolderName = "Default"
 )
 
 func pathFor(elem ...string) string {
@@ -30,7 +31,7 @@ func TestBrowser_JoinPath(t *testing.T) {
 	test := assert.New(t)
 	browser := &Browser{Path: fullPath}
 
-	test.Equal(path.Join(fullPath, defaultProfileName), browser.JoinPath(defaultProfileName))
+	test.Equal(path.Join(fullPath, defaultProfileFolderName), browser.JoinPath(defaultProfileFolderName))
 }
 
 func TestBrowser_ResolvePath(t *testing.T) {
@@ -38,5 +39,5 @@ func TestBrowser_ResolvePath(t *testing.T) {
 	browser := &Browser{Path: fullPath}
 
 	test.Equal(resolvePath(), browser.ResolvePath())
-	test.Equal(resolvePath(defaultProfileName), browser.ResolvePath(defaultProfileName))
+	test.Equal(resolvePath(defaultProfileFolderName), browser.ResolvePath(defaultProfileFolderName))
 }

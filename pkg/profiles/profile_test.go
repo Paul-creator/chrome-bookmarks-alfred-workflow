@@ -1,9 +1,10 @@
 package profiles
 
 import (
+	"testing"
+
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestProfile_AvatarIconURL(t *testing.T) {
@@ -15,9 +16,9 @@ func TestProfile_AvatarIconURL(t *testing.T) {
 		IsDefaultAvatar: false,
 	}
 
-	test.Equal("img/chrome.png", profile.AvatarIconURL(&browser, DefaultProfileName))
+	test.Equal("img/chrome.png", profile.AvatarIconURL(&browser, DefaultProfileFolderName))
 
 	profile.IsDefaultAvatar = true
 
-	test.Equal("test/Avatars/avatar_ninja.png", profile.AvatarIconURL(&browser, DefaultProfileName))
+	test.Equal("test/Avatars/avatar_ninja.png", profile.AvatarIconURL(&browser, DefaultProfileFolderName))
 }

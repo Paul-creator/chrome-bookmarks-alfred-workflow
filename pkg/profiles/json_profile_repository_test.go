@@ -1,9 +1,10 @@
 package profiles
 
 import (
+	"testing"
+
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestJsonProfileRepository_GetProfiles(t *testing.T) {
@@ -15,7 +16,7 @@ func TestJsonProfileRepository_GetProfiles(t *testing.T) {
 	test.NoError(err)
 	test.Len(profileSlice, 3)
 
-	browser.ProfileName = DefaultProfileName
+	browser.ProfileFolderName = DefaultProfileFolderName
 
 	profileSlice, err = profileRepository.GetProfiles(&browser)
 

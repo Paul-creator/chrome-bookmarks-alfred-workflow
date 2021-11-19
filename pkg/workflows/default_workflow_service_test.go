@@ -1,11 +1,12 @@
 package workflows
 
 import (
+	"testing"
+
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/bookmarks"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/profiles"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestDefaultBookmarkService_GetBrowsers(t *testing.T) {
@@ -44,7 +45,7 @@ func TestDefaultBookmarkService_GetProfiles(t *testing.T) {
 	test.NoError(err)
 	test.Len(profileSlice, 2)
 
-	profileSlice, err = workflowService.GetProfiles(browser, profiles.DefaultProfileName)
+	profileSlice, err = workflowService.GetProfiles(browser, profiles.DefaultProfileFolderName)
 
 	test.NoError(err)
 	test.Len(profileSlice, 1)
@@ -104,7 +105,7 @@ func TestDefaultBookmarkService_UpdateBrowser(t *testing.T) {
 	browserSlice, _ := workflowService.GetBrowsers()
 	browser, _ := browserSlice.FindByName("chrome")
 
-	browser.ProfileName = profiles.DefaultProfileName
+	browser.ProfileFolderName = profiles.DefaultProfileFolderName
 
 	err := workflowService.UpdateBrowser(browser)
 
@@ -112,7 +113,7 @@ func TestDefaultBookmarkService_UpdateBrowser(t *testing.T) {
 	browser, _ = browserSlice.FindByName("chrome")
 
 	test.NoError(err)
-	test.Equal(profiles.DefaultProfileName, browser.ProfileName)
+	test.Equal(profiles.DefaultProfileFolderName, browser.ProfileFolderName)
 }
 
 func TestDefaultBookmarkService_GetWorkflowMetadata(t *testing.T) {

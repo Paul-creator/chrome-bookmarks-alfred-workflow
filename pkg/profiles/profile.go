@@ -1,9 +1,10 @@
 package profiles
 
 import (
-	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"os"
 	"strings"
+
+	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 )
 
 const avatarResourcePrefix = "chrome://theme/"
@@ -39,7 +40,7 @@ var avatarResources = map[string]string{
 	"IDR_PROFILE_AVATAR_26": "avatar_placeholder.png",
 }
 
-const DefaultProfileName = "Default"
+const DefaultProfileFolderName = "Default"
 
 type Profile struct {
 	Name            string
@@ -61,7 +62,7 @@ var AutoProfile = Profile{
 	IsVirtual:   true,
 }
 
-func (p *Profile) AvatarIconURL(browser *browsers.Browser, profileName string) string {
+func (p *Profile) AvatarIconURL(browser *browsers.Browser, profileFolderName string) string {
 	var iconURL string
 
 	if p.IsDefaultAvatar {
@@ -69,7 +70,7 @@ func (p *Profile) AvatarIconURL(browser *browsers.Browser, profileName string) s
 
 		iconURL = browser.ResolvePath("Avatars", name)
 	} else {
-		iconURL = browser.ResolvePath(profileName, p.CustomAvatarURL)
+		iconURL = browser.ResolvePath(profileFolderName, p.CustomAvatarURL)
 	}
 
 	if stat, err := os.Stat(iconURL); os.IsNotExist(err) || stat.IsDir() {

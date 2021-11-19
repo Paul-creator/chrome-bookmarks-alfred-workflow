@@ -1,10 +1,11 @@
 package browsers
 
 import (
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"regexp"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 type YmlBrowserRepository struct {
@@ -28,7 +29,7 @@ func (r *YmlBrowserRepository) GetBrowsers() (BrowserSlice, error) {
 	re := regexp.MustCompile(`(\\ )`)
 
 	for i, v := range browserSlice {
-		browserSlice[i].ProfileName = re.ReplaceAllString(v.ProfileName, " ")
+		browserSlice[i].ProfileFolderName = re.ReplaceAllString(v.ProfileFolderName, " ")
 	}
 
 	return browserSlice, nil

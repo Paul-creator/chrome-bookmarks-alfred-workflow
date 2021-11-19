@@ -2,8 +2,9 @@ package bookmarks
 
 import (
 	"encoding/json"
-	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"io/ioutil"
+
+	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 )
 
 type bookmarkTree struct {
@@ -45,7 +46,7 @@ type JsonBookmarkRepository struct {
 }
 
 func (r *JsonBookmarkRepository) GetBookmarks(browser *browsers.Browser) (BookmarkSlice, error) {
-	filename := browser.ResolvePath(browser.ProfileName, r.Filename)
+	filename := browser.ResolvePath(browser.ProfileFolderName, r.Filename)
 	bytes, err := ioutil.ReadFile(filename)
 
 	if err != nil {

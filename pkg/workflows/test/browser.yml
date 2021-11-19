@@ -2,4 +2,4 @@
   description: Google Chrome
   path: test
   iconUrl: img/chrome.png
-  profileName: Default
+  profileFolderName: Default

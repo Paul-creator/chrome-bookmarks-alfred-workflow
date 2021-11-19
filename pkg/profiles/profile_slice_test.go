@@ -1,15 +1,16 @@
 package profiles
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestProfileSlice_Match(t *testing.T) {
 	test := assert.New(t)
 	profileSlice := ProfileSlice{
 		Profile{
-			Name:      DefaultProfileName,
+			Name:      DefaultProfileFolderName,
 			UserName:  "User 1",
 			UserEmail: "user1@gmail.com",
 		},
@@ -35,14 +36,14 @@ func TestProfileSlice_Sort(t *testing.T) {
 			UserEmail: "user2@gmail.com",
 		},
 		Profile{
-			Name:      DefaultProfileName,
+			Name:      DefaultProfileFolderName,
 			UserName:  "User 1",
 			UserEmail: "user1@gmail.com",
 		},
 	}.Sort()
 
 	test.Equal(Profile{
-		Name:      DefaultProfileName,
+		Name:      DefaultProfileFolderName,
 		UserName:  "User 1",
 		UserEmail: "user1@gmail.com",
 	}, profileSlice[0])
@@ -58,7 +59,7 @@ func TestProfileSlice_FirstActive(t *testing.T) {
 			IsActive:  true,
 		},
 		Profile{
-			Name:      DefaultProfileName,
+			Name:      DefaultProfileFolderName,
 			UserName:  "User 1",
 			UserEmail: "user1@gmail.com",
 			IsActive:  false,

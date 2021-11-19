@@ -3,14 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/deanishe/awgo"
+	"os"
+	"path"
+	"strings"
+
+	aw "github.com/deanishe/awgo"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/bookmarks"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/profiles"
 	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/workflows"
-	"os"
-	"path"
-	"strings"
 )
 
 var (
@@ -148,7 +149,7 @@ func run() error {
 			return err
 		}
 
-		b.ProfileName = query
+		b.ProfileFolderName = query
 
 		err = workflowService.UpdateBrowser(b)
 

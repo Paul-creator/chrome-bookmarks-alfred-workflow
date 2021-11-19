@@ -2,9 +2,10 @@ package profiles
 
 import (
 	"encoding/json"
-	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 	"io/ioutil"
 	"strings"
+
+	"github.com/mdreizin/chrome-bookmarks-alfred-workflow/pkg/browsers"
 )
 
 type profileAux struct {
@@ -36,10 +37,10 @@ func (r *JsonProfileRepository) GetProfiles(browser *browsers.Browser) (ProfileS
 
 	profileSlice := ProfileSlice{}
 
-	profileName := browser.ProfileName
+	profileFolderName := browser.ProfileFolderName
 
-	if profileName == "" {
-		profileName = aux.Root.Name
+	if profileFolderName == "" {
+		profileFolderName = aux.Root.Name
 	}
 
 	aux.Root.Profiles[AutoProfile.Name] = AutoProfile
@@ -54,7 +55,7 @@ func (r *JsonProfileRepository) GetProfiles(browser *browsers.Browser) (ProfileS
 		profileSlice = profileSlice.Add(&Profile{
 			Name:            name,
 			IsVirtual:       v.IsVirtual,
-			IsActive:        strings.EqualFold(name, profileName),
+			IsActive:        strings.EqualFold(name, profileFolderName),
 			AvatarURL:       v.AvatarURL,
 			IconURL:         v.AvatarIconURL(browser, k),
 			CustomAvatarURL: v.CustomAvatarURL,

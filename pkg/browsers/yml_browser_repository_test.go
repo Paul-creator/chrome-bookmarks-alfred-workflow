@@ -1,11 +1,12 @@
 package browsers
 
 import (
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestYmlBrowserRepository_GetBrowsers(t *testing.T) {
@@ -15,7 +16,7 @@ func TestYmlBrowserRepository_GetBrowsers(t *testing.T) {
 
 	test.NoError(err)
 	test.Len(browserSlice, 3)
-	test.Equal("Profile 1", browserSlice[0].ProfileName)
+	test.Equal("Profile 1", browserSlice[0].ProfileFolderName)
 }
 
 func TestYmlBrowserRepository_GetBrowsers_ReadFileError(t *testing.T) {
@@ -40,7 +41,7 @@ func TestYmlBrowserRepository_UpdateBrowser(t *testing.T) {
 	browsersSlice, _ := repository.GetBrowsers()
 	browser, _ := browsersSlice.FindByName("chrome")
 
-	browser.ProfileName = defaultProfileName
+	browser.ProfileFolderName = defaultProfileFolderName
 
 	err := repository.UpdateBrowser(browser)
 
@@ -49,7 +50,7 @@ func TestYmlBrowserRepository_UpdateBrowser(t *testing.T) {
 	browsersSlice, _ = repository.GetBrowsers()
 	browser, _ = browsersSlice.FindByName("chrome")
 
-	test.Equal(defaultProfileName, browser.ProfileName)
+	test.Equal(defaultProfileFolderName, browser.ProfileFolderName)
 
 	_ = os.RemoveAll(dirname)
 }

@@ -42,15 +42,15 @@ func (s *DefaultWorkflowService) GetBookmarks(browser *browsers.Browser, query s
 		return nil, err
 	}
 
-	profileName := profiles.DefaultProfileName
+	profileFolderName := profiles.DefaultProfileFolderName
 
-	if browser.ProfileName == "" {
+	if browser.ProfileFolderName == "" {
 		if profile, err := profileSlice.FirstActive(); err == nil && profile.Name != "" {
-			profileName = profile.Name
+			profileFolderName = profile.Name
 		}
 	}
 
-	browser.ProfileName = profileName
+	browser.ProfileFolderName = profileFolderName
 
 	bookmarkSlice, err := s.BookmarkService.GetBookmarks(browser)
 

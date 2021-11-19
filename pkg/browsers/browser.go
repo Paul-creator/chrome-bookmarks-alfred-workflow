@@ -12,12 +12,12 @@ const (
 )
 
 type Browser struct {
-	Name        string `yaml:"name"`
-	FullName    string `yaml:"fullName,omitempty"`
-	Description string `yaml:"description"`
-	Path        string `yaml:"path"`
-	IconURL     string `yaml:"iconUrl"`
-	ProfileName string `yaml:"profileName,omitempty"`
+	Name              string `yaml:"name"`
+	FullName          string `yaml:"fullName,omitempty"`
+	Description       string `yaml:"description"`
+	Path              string `yaml:"path"`
+	IconURL           string `yaml:"iconUrl"`
+	ProfileFolderName string `yaml:"profileFolderName,omitempty"`
 }
 
 func (b *Browser) JoinPath(elem ...string) string {
